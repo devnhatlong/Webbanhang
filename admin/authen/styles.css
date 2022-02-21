@@ -1,0 +1,30 @@
+*{
+    margin: 0;
+    padding: auto;
+    box-sizing: border-box;
+}
+ body {
+    background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');
+ }
+
+.main-reg {
+    width: 500px;
+    padding: 20px;
+    margin: 15% auto;
+    background: white;
+    border-radius: 10px;
+}
+
+.gradient-custom-4 {
+    width: 100%;
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 20%), 0 2px 10px 0 rgb(0 0 0 / 10%);
+    text-transform: uppercase;
+    /* fallback for old browsers */
+    background: #84fab0;
+  
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1));
+  
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
+}
