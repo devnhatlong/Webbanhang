@@ -3,6 +3,7 @@
     function fixSqlInject($sql) {
         $sql = str_replace('\\', '\\\\', $sql);
         $sql = str_replace('\'', '\\\'', $sql);
+        return $sql;
     }
 
     function getGet($key) {
@@ -43,5 +44,27 @@
 
     function getSecurityMD5($pwd) {
         return md5(md5($pwd).PRIVATE_KEY);
+    }
+
+    function getUserToken() {
+        if(isset($_SESSION['user'])) {
+            return $_SESSION['user'];
+        }
+
+        $token = getCookie('token');
+        $sql = "SELECT * FROM tokens WHERE token ='$token'";
+        $item = executeResult($sql, true);
+
+        if($item != null) {
+            $userId = $item['user_id'];
+            $sql = "SELECT * FROM user WHERE id ='$userId' AND deleted = 0";
+            $item = executeResult($sql, true);
+            if($item != null) {
+                $_SESSION['user'] = $item;
+                return $item;
+            }
+        }
+
+        return null;
     }
 ?>

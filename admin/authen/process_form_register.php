@@ -6,13 +6,14 @@
         $email = getPost('email');
         $pwd = getPost('password');
     }
-    echo $fullname.'<br/>'.$email.'<br/>'.$pwd;
+    //var_dump($_POST); 
+    
     //validate
     if(empty($fullname) || empty($email) || empty($pwd) || strlen($pwd) < 6) {
-        $msg = 'Đăng ký thất bại.';
+        //$msg = 'Đăng ký thất bại.';
     } else {
         //validate thanh cong
-        $userExist = executeResult("select * from user where email = '$email'", true);
+        $userExist = executeResult("SELECT * FROM user WHERE email = '$email'", true);
         if($userExist != null) {
             $msg = 'Email đã được đăng ký trên hệ thống.';
         } else {
@@ -21,11 +22,10 @@
             //Ma hoa 1 chieu -> md5 (custom)
             $pwd = getSecurityMD5($pwd);
 
-            $sql = "insert into user(fullname, email, password, role_id, created_at, updated_at, deleted) values ('$fullname', '$email', '$pwd', 2, '$created_at', '$updated_at', 0)";
+            $sql = "INSERT INTO user (fullname, email, password, created_at, updated_at, deleted) VALUES ('$fullname', '$email', '$pwd', '$created_at', '$updated_at', 0)";
             execute($sql);
             header('Location: login.php');
             die();
         }
     }
-
 ?>
