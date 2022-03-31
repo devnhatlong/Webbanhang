@@ -41,7 +41,7 @@
                 //insert
                 $sql = "INSERT INTO user(fullname, email, phone_number, address, password, role_id, created_at, updated_at, deleted) 
                         VALUES ('$fullname', '$email', '$phone_number', '$address', '$password', '$role_id', '$created_at', '$updated_at', 0)";
-                executeResult($sql);
+                execute($sql);
                 header('Location: index.php');
                 die();
             } else {

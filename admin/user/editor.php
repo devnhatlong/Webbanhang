@@ -33,9 +33,6 @@
 		<h1>Thêm/sửa Tài Khoản Người Dùng</h1>
 
         <div class="panel panel-primary bg-image main-reg">
-            <div class="panel-heading">
-                
-            </div>
             <div class="panel-body">
                 <form action="" method="post" onsubmit="return validateForm()">
                     <div class="form-group">

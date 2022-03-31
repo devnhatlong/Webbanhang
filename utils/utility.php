@@ -67,4 +67,31 @@
 
         return null;
     }
+    // $key = name="thumbnail"
+    function moveFile($key, $rootPath = "../../") {
+        //kiểm tra có file dc đẩy lên sv hay không. nếu ko thì trả về rỗng
+        if(!isset($_FILES[$key]) || !isset($_FILES[$key]['name']) || $_FILES[$key]['name'] == '') {
+            return '';
+        }
+        //nếu có file dc đẩy lên sv apache thì dc lưu vào đường dẫn tạm thời
+        $pathTemp = $_FILES[$key]["tmp_name"];
+        // lưu tên file vào biến filename
+        $filename = $_FILES[$key]['name'];
+        //filename -> remove special character, ..., ...
+        // lưu file đó vào đường dẫn assets/photos/
+        $newPath="assets/photos/".$filename;
+        //move_uploaded_file: di chuyển cái file tạm thời đẩy sang file mới
+        move_uploaded_file($pathTemp, $rootPath.$newPath);
+    
+        return $newPath;
+    }
+
+    function fixUrl($thumbnail, $rootPath = "../../") {
+        if(stripos($thumbnail, 'http://') !== false || stripos($thumbnail, 'https://') !== false) {
+        } else {
+            $thumbnail = $rootPath.$thumbnail;
+        }
+    
+        return $thumbnail;
+    }
 ?>

@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    require_once('../../utils/utillity.php');
+    require_once('../../utils/utility.php');
     require_once('../../database/dbhelper.php');
     require_once('./process_form_register.php');
 

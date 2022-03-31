@@ -6,7 +6,7 @@
         $pwd = getPost('password');
         $pwd = getSecurityMD5($pwd);
 
-        $sql = "SELECT * From user WHERE email = '$email' AND password = '$pwd' AND deleted = 1";
+        $sql = "SELECT * From user WHERE email = '$email' AND password = '$pwd' AND deleted = 0";
 
         $userExist = executeResult($sql, true);
 

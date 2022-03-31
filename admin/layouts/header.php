@@ -1,14 +1,18 @@
 <?php 
-  session_start();
-    
-  require_once($baseUrl.'../utils/utility.php');
-  require_once($baseUrl.'../database/dbhelper.php');
+    session_start();
+      
+    require_once($baseUrl.'../utils/utility.php');
+    require_once($baseUrl.'../database/dbhelper.php');
 
-  $user = getUserToken();
-  if($user == null) {
-      header('Location: '.$baseUrl.'authen/login.php');
-      die();
-  }
+    $user = getUserToken();
+    if($user == null) {
+        header('Location: '.$baseUrl.'authen/login.php');
+        die();
+    } else if($user['role_id'] != 1){
+          header('Location: ../'.$baseUrl.'index.php');
+          die();
+    }
+  
 ?>
 <!DOCTYPE html>
 <html>
@@ -36,7 +40,7 @@
 </head>
 <body>
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">BJEver</a>
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#"><?=$user['fullname']?></a>
   <input class="form-control form-control-dark w-100" type="text" placeholder="Tìm kiếm" aria-label="Search">
   <ul class="navbar-nav px-3">
     <li class="nav-item text-nowrap">
@@ -64,7 +68,7 @@
           <li class="nav-item">
             <a class="nav-link" href="<?=$baseUrl?>product">
               <i class="bi bi-file-earmark-text"></i>
-              Sản Phẩm
+              Quản Lý Sản Phẩm
             </a>
           </li>
           <li class="nav-item">
