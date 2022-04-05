@@ -2,16 +2,16 @@
   require_once('./layouts/header.php');
   $category_id = getGet('id');
   if($category_id == null || $category_id == '') {
-    $sql = "SELECT product.*, category.name AS category_name FROM product LEFT JOIN category ON product.category_id = category_id ORDER BY product.updated_at DESC LIMIT 0,12";  
+    $sql = "SELECT product.*, category.name AS category_name FROM product LEFT JOIN category ON product.category_id = category.id ORDER BY product.updated_at DESC LIMIT 0,12";  
 
   } else {
-        $sql = "SELECT product.*, category.name AS category_name FROM product LEFT JOIN category ON product.category_id = category_id WHERE product.category_id = $category_id ORDER BY product.updated_at DESC LIMIT 0,12";  
+        $sql = "SELECT product.*, category.name AS category_name FROM product LEFT JOIN category ON product.category_id = category.id WHERE product.category_id = $category_id ORDER BY product.updated_at DESC LIMIT 0,12";  
   }
   $lastestItems = executeResult($sql);
   
 ?>
 
-<!-- BEGIN: SẢN PHẨM MỚI NHẤT -->
+
 <div class="container" style="margin-top: 20px; margin-bottom: 20px;">
     <div class="row">
         <?php 

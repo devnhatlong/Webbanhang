@@ -46,7 +46,7 @@
         foreach($_SESSION['cart'] as $item) {
             $totalMoney += $item['discount'] * $item['num'];
         }
-        $sql = "INSERT INTO orders(user_id, fullname, email, phone_number, address, note, order_date, status, total_money) VALUES ($userId, '$fullname', '$email', '$phone_number', '$address', '$note', '$orderDate', 1, '$totalMoney')";
+        $sql = "INSERT INTO orders(user_id, fullname, email, phone_number, address, note, order_date, status, total_money) VALUES ($userId, '$fullname', '$email', '$phone_number', '$address', '$note', '$orderDate', 0, '$totalMoney')";
         execute($sql);
 
         $sql = "SELECT * FROM orders WHERE order_date = '$orderDate'";
@@ -92,7 +92,6 @@
         if(!isset($_SESSION['cart'])) {
             $_SESSION['cart'] = [];
         }
-
         $isFind = false;
         for($i = 0; $i < count($_SESSION['cart']); $i++) {
             if($_SESSION['cart'][$i]['id'] == $id) {

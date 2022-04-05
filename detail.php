@@ -1,11 +1,11 @@
 <?php 
     require_once('./layouts/header.php');
     $productId = getGet('id');
-    $sql = "SELECT product.*, category.name AS category_name FROM product LEFT JOIN category ON product.category_id = category_id WHERE product.id = $productId";
+    $sql = "SELECT product.*, category.name AS category_name FROM product LEFT JOIN category ON product.category_id = category.id WHERE product.id = $productId";
     $product = executeResult($sql, true);
-
+    
     $category_id = $product['category_id'];
-    $sql = "SELECT product.*, category.name AS category_name FROM product LEFT JOIN category ON product.category_id = category_id WHERE product.category_id = $category_id ORDER BY product.updated_at DESC LIMIT 0,4";
+    $sql = "SELECT product.*, category.name AS category_name FROM product LEFT JOIN category ON product.category_id = category.id WHERE product.category_id = $category_id ORDER BY product.updated_at DESC LIMIT 0,4";
     
     $lastestItems = executeResult($sql);
   

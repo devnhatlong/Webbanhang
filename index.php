@@ -67,7 +67,7 @@
     <?php 
         $count = 0;
         foreach($menuItems as $item) {
-          $sql = "SELECT product.*, category.name AS category_name FROM product LEFT JOIN category ON product.category_id = category_id WHERE product.category_id = ".$item['id']." ORDER BY product.updated_at DESC LIMIT 0,4";
+          $sql = "SELECT product.*, category.name AS category_name FROM product LEFT JOIN category ON product.category_id = category.id WHERE product.category_id = ".$item['id']." ORDER BY product.updated_at DESC LIMIT 0,4";
           $items = executeResult($sql);
 
           if($items == null || count($items) < 4) continue;
@@ -77,19 +77,21 @@
           <div class="container">
             <h1 style="text-align: center; margin-top: 20px; margin-bottom: 20px;"><?=$item['name']?></h1>
                 <div class="row">
-                    <?php 
-                      foreach($items as $pItem) {
-                        echo '<div class="col-md-3 col-6 product-item">
-                                <a href="detail.php?id='.$item['id'].'">
+                    <?php
+                      $sql = "SELECT product.*, category.name AS category_name FROM product LEFT JOIN category ON product.category_id = category.id WHERE product.category_id = ".$item['id']." LIMIT 0,4";
+                      $p = executeResult($sql);
+                      foreach($p as $pItem) {
+                        echo '<div class="col-md-3 col-6 product-item product-hover-overlay">
+                                <a href="detail.php?id='.$pItem['id'].'">
                                   <img src="'.$pItem['thumbnail'].'" style="width: 100%;">
                                 </a>
                                 <p style="font-weight: bold;">'.$pItem['category_name'].'</p>
-                                <a href="detail.php?id='.$item['id'].'">
+                                <a href="detail.php?id='.$pItem['id'].'">
                                   <p style="font-weight: bold;">'.$pItem['title'].'</p>
                                 </a>
                                 <p style="color: red; font-weight: bold;">'.number_format($pItem['discount']).' VNĐ</p>
                                 <p>
-                                    <button class="btn btn-success" onclick="addCart('.$item['id'].', 1)" style="width: 100%;">
+                                    <button class="btn btn-success" onclick="addCart('.$pItem['id'].', 1)" style="width: 100%;">
                                         <i class="bi bi-cart-plus-fill"></i> Thêm giỏ hàng
                                     </button>
                                 </p>

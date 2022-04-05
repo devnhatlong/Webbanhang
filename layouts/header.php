@@ -40,7 +40,7 @@
             <ul class="nav nav-container">
                 <li class="nav-item" style="margin-top: 0px;"><a href="index.php"><img src="./assets/logo/logo.png" alt="logo" style="height: 80px"></a></li>
               <li class="nav-item">
-                <a class="nav-link" href="index.php">Trang Chủ <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="index.php">Trang Chủ<span class="sr-only">(current)</span></a>
               </li>
               <?php 
                 foreach($menuItems as $item) {
