@@ -41,7 +41,7 @@
 
                                     <th style="width: 110px">';
                                         if($item['status'] == 0) {
-                                            echo '<button onclick="markRead('.$item['id'].')" class="btn btn-danger">Đã đọc</button>';
+                                            echo '<button onclick="markRead('.$item['id'].')" class="btn btn-danger" style="padding: 6px">Chưa đọc</button>';
                                         }
                                     echo '
                                     </th>
